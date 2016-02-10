@@ -1,0 +1,35 @@
+== Issue
+
+This allows for the creation and manipulation of issue branches in git.
+
+==== Open
+
+`git issue open <issue> [<base>]`
+
+This function will create a new issue branch from the current branch, and check it out. If the `<base>` option is
+specified, it will create the issue from the latest commit of that branch. If the issue branch already exists, the
+command will attempt to switch across and initiate a rebase.
+
+.Examples:
+* `git issue open BASE-1234`
+* `git issue open BASE-1234 master`
+
+=== Close
+
+`git issue close [<issue>] [-f|--force]`
+
+This command will verify that the branch has been integrated by fetching updates from the two related branches, and
+will remove it from both the local and remote repository if so. If not integrated, it will throw an error unless the
+`-f` or `--force` flag is set. If no issue specified, and the `-a` or `--all` flag is set, it will enumerate all of the
+local issue branches and close any that are integrated. Note: this functionality cannot be combined with `-f` or
+`--force`.
+
+.Examples:
+* `git issue close`
+* `git issue close -a`
+* `git issue close --all`
+* `git issue close -f`
+* `git issue close --force`
+* `git issue close BASE-1234`
+* `git issue close BASE-1234 -f`
+* `git issue close BASE-1234 --force`
